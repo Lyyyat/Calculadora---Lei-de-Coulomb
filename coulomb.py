@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Constante de Coulomb (N·m²/C²)
+
 k = 8.9875517873681764e9
 
 def calcular_forca_coulomb(q1, q2, distancia):
@@ -16,7 +16,7 @@ def calcular_forca_coulomb(q1, q2, distancia):
     Força em Newtons
     """
     if distancia == 0:
-        return float('inf')  # Força infinita quando as cargas estão no mesmo ponto
+        return float('inf')  
     
     forca = k * abs(q1 * q2) / (distancia ** 2)
     return forca
@@ -30,7 +30,7 @@ def analisar_variacao_distancia(q1, q2, distancia_maxima=1.0, pontos=50):
     distancia_maxima: distância máxima a ser analisada em metros
     pontos: número de pontos para a análise
     """
-    distancias = np.linspace(0.01, distancia_maxima, pontos)  # Evita divisão por zero
+    distancias = np.linspace(0.01, distancia_maxima, pontos)  
     forcas = []
     
     for d in distancias:
@@ -58,8 +58,8 @@ def main():
     print("=" * 60)
     print("         LEI DE COULOMB - CALCULADORA DE FORÇA")
     print("=" * 60)
+
     
-    # Entrada de dados
     try:
         q1 = float(input("Digite o valor da carga 1 (C): "))
         q2 = float(input("Digite o valor da carga 2 (C): "))
@@ -69,10 +69,10 @@ def main():
             print("Erro: A distância deve ser maior que zero!")
             return
         
-        # Cálculo da força
+        
         forca = calcular_forca_coulomb(q1, q2, distancia)
         
-        # Determina se é atrativa ou repulsiva
+        
         if q1 * q2 > 0:
             tipo = "REPULSIVA"
         elif q1 * q2 < 0:
@@ -80,7 +80,7 @@ def main():
         else:
             tipo = "NULA"
         
-        # Exibe resultados
+        
         print("\n" + "=" * 40)
         print("RESULTADOS:")
         print("=" * 40)
@@ -91,7 +91,7 @@ def main():
         print(f"Tipo de força: {tipo}")
         print("=" * 40)
         
-        # Pergunta se deseja ver a variação com a distância
+        
         analisar = input("\nDeseja analisar como a força varia com a distância? (s/n): ").lower()
         
         if analisar == 's':
@@ -99,7 +99,6 @@ def main():
             distancias, forcas = analisar_variacao_distancia(q1, q2, distancia_max)
             plotar_grafico(distancias, forcas, q1, q2)
             
-            # Mostra alguns valores da tabela
             print("\nTabela de valores (amostra):")
             print("Distância (m)\tForça (N)")
             print("-" * 30)
@@ -113,3 +112,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
